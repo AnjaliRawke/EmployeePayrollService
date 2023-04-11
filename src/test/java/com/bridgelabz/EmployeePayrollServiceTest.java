@@ -2,11 +2,14 @@ package com.bridgelabz;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class EmployeePayrollServiceTest {
@@ -45,5 +48,24 @@ public class EmployeePayrollServiceTest {
 		Files.list(playPath).filter(Files::isRegularFile).forEach(System.out::println);
 		Files.newDirectoryStream(playPath).forEach(System.out::println);
 		Files.newDirectoryStream(playPath,path-> path.toFile().isFile()&&path.toString().startsWith("temp")).forEach(System.out::println);
+	}
+
+	@Test
+	public void givenThreeEmployeesWhenWrittenToFileAndReadShouldReturnCount(){
+		EmployeePayroll emp1 = new EmployeePayroll(1,"Anjali", 250000);
+		EmployeePayroll emp2 = new EmployeePayroll(2,"Apeksha", 260000);
+		EmployeePayroll emp3 = new EmployeePayroll(3,"Vaishnavi", 270000);
+
+		List<EmployeePayroll> list = new ArrayList<>();
+		list.add(emp1);
+		list.add(emp2);
+		list.add(emp3);
+
+		EmployeePayrollService employeePayrollService = new EmployeePayrollService(list);
+		employeePayrollService.writeData(IOService.FILE_IO);
+		employeePayrollService.readData(IOService.FILE_IO);
+		long count = employeePayrollService.countEntries(IOService.FILE_IO);
+		Assertions.assertEquals(3,count);
+
 	}
 }
