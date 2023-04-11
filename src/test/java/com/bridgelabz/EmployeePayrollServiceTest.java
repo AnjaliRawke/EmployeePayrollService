@@ -51,10 +51,10 @@ public class EmployeePayrollServiceTest {
 	}
 
 	@Test
-	public void givenThreeEmployeesWhenWrittenToFileAndReadShouldReturnCount(){
-		EmployeePayroll emp1 = new EmployeePayroll(1,"Anjali", 250000);
-		EmployeePayroll emp2 = new EmployeePayroll(2,"Apeksha", 260000);
-		EmployeePayroll emp3 = new EmployeePayroll(3,"Vaishnavi", 270000);
+	public void givenThreeEmployeesWhenWrittenToFileAndReadShouldReturnCount() {
+		EmployeePayroll emp1 = new EmployeePayroll(1, "Anjali", 250000);
+		EmployeePayroll emp2 = new EmployeePayroll(2, "Apeksha", 260000);
+		EmployeePayroll emp3 = new EmployeePayroll(3, "Vaishnavi", 270000);
 
 		List<EmployeePayroll> list = new ArrayList<>();
 		list.add(emp1);
@@ -65,7 +65,6 @@ public class EmployeePayrollServiceTest {
 		employeePayrollService.writeData(IOService.FILE_IO);
 		employeePayrollService.readData(IOService.FILE_IO);
 		long count = employeePayrollService.countEntries(IOService.FILE_IO);
-		Assertions.assertEquals(3,count);
-
+		Assertions.assertEquals(3, count);
 	}
 }
