@@ -34,7 +34,6 @@ public class EmployeePayrollService {
 
 		employeePayrollList.add(new EmployeePayroll(id, name, salary));
 	}
-
 	private void writeEmployeePayrollData() {
 		System.out.println("\nWriting Employee Payroll Roaster to Console\n" + employeePayrollList);
 	}
